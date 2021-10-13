@@ -1,0 +1,62 @@
+
+PROCEDURE dot_product_procedure(v1,v2 : ARRAY_OF FLOAT[50],VAR ps :FLOAT)
+VAR
+    i:INTEGER;
+BEGIN
+FOR i FROM 0 TO v1.length-1 STEP 1  DO
+    ps=ps+v1[i]*v2[i];
+END_FOR
+END
+
+FUNCTION dot_product_function(v1,v2 : ARRAY_OF FLOAT[50]) : FLOAT
+VAR
+    i:INTEGER;
+    calc:FLOAT
+BEGIN
+FOR i FROM 0 TO v1.length-1 STEP 1  DO
+    calc=calc+v1[i]*v2[i];
+END_FOR
+    return calc;
+END
+
+
+ALGORITHM Dot-Product
+VAR
+    n,i : INTEGER;
+    v1,v2 : ARRAY_OF FLOAT[50];
+    ps : FLOAT;
+BEGIN
+    
+//with Procedure
+    Write("what's the nbr of pairs");
+    Read(n)
+    FOR i FROM 1 TO 2*n STEP 2  DO
+        Write('write vector N°',i);
+        Read(v1);
+        Write('write vector N°',i+1);
+        Read(v2);
+        dot_product_procedure(v1,v2,ps);
+        IF (ps=0) THEN
+            Write('the two vectors are orthogonal');
+        ELSE write('the two vectors are not orthogonal')
+        END_IF
+    END_FOR
+
+
+//with function
+    Write("what's the nbr of pairs");
+    Read(n)
+    FOR i FROM 1 TO 2*n STEP 2  DO
+        Write('write vector N°',i);
+        Read(v1);
+        Write('write vector N°',i+1);
+        Read(v2);
+        ps:=dot_product_function(v1,v2);
+        IF (ps=0) THEN
+            Write('the two vectors are orthogonal');
+        ELSE write('the two vectors are not orthogonal');
+        END_IF
+    END_FOR
+    
+
+END
